@@ -89,7 +89,7 @@ if ! [ -z "$INPUT_DOCKER_PRUNE" ] && [ $INPUT_DOCKER_PRUNE = 'true' ] ; then
 fi
 
 printf 'Current DIR \n'
-printf '%s\n' "$(pwd)"
+printf '%s\n' "$(ls -ltr)"
 
 if ! [ -z "$INPUT_COPY_STACK_FILE" ] && [ $INPUT_COPY_STACK_FILE = 'true' ] ; then
   execute_ssh "mkdir -p $INPUT_DEPLOY_PATH/stacks || true"
