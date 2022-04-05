@@ -49,8 +49,6 @@ fi
 
 if [ -z "$INPUT_WORKING_DIRECTORY" ]; then
   printf 'Working Directory \n' "$(pwd)"
-  #printf '%s\n' "$(ls -ltr)"
-fi
 else
   cd $INPUT_WORKING_DIRECTORY
   printf 'Working Directory \n' "$(pwd)"
