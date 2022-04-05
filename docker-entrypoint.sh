@@ -47,6 +47,15 @@ else
   INPUT_KEEP_FILES=$((INPUT_KEEP_FILES+1))
 fi
 
+if [ -z "$INPUT_WORKING_DIRECTORY" ]; then
+  printf 'Working Directory \n' "$(pwd)"
+  #printf '%s\n' "$(ls -ltr)"
+fi
+else
+  cd $INPUT_WORKING_DIRECTORY
+  printf 'Working Directory \n' "$(pwd)"
+fi
+
 STACK_FILE=${INPUT_STACK_FILE_NAME}
 DEPLOYMENT_COMMAND_OPTIONS=""
 
@@ -87,9 +96,6 @@ printf '%s %s\n' "$SSH_HOST" "$INPUT_SSH_PUBLIC_KEY" > /etc/ssh/ssh_known_hosts
 if ! [ -z "$INPUT_DOCKER_PRUNE" ] && [ $INPUT_DOCKER_PRUNE = 'true' ] ; then
   yes | docker --log-level debug --host "ssh://$INPUT_REMOTE_DOCKER_HOST:$INPUT_REMOTE_DOCKER_PORT" system prune -a 2>&1
 fi
-
-printf 'Current DIR \n'
-printf '%s\n' "$(ls -ltr)"
 
 if ! [ -z "$INPUT_COPY_STACK_FILE" ] && [ $INPUT_COPY_STACK_FILE = 'true' ] ; then
   execute_ssh "mkdir -p $INPUT_DEPLOY_PATH/stacks || true"
