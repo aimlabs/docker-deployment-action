@@ -70,9 +70,14 @@ case $INPUT_DEPLOYMENT_MODE in
     DEPLOYMENT_COMMAND="docker $DEPLOYMENT_COMMAND_OPTIONS stack deploy --compose-file $STACK_FILE"
   ;;
 
-  *)
+  docker-compose)
     INPUT_DEPLOYMENT_MODE="docker-compose"
     DEPLOYMENT_COMMAND="docker-compose $DEPLOYMENT_COMMAND_OPTIONS -f $STACK_FILE"
+  ;;
+
+  *)
+    INPUT_DEPLOYMENT_MODE="docker"
+    DEPLOYMENT_COMMAND="docker $DEPLOYMENT_COMMAND_OPTIONS"
   ;;
 esac
 
