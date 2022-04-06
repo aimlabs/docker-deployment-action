@@ -11,6 +11,7 @@ Below is a brief example on how the action can be used:
 - name: Deploy to Docker swarm
   uses: wshihadeh/docker-deployment-action@v1
   with:
+    working_directory: ./docker
     remote_docker_host: user@myswarm.com
     ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
     ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
